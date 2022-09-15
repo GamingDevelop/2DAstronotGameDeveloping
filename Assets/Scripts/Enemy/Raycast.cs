@@ -37,11 +37,18 @@ public class Raycast : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    [SerializeField]
+    private Collider2D coll;
+
+    [SerializeField]
+    private float FollowSpeed = 1f;
+
     void Start()
     {
         tr = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Transform>();
         tr_p = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>();
+        coll = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Collider2D>();
     }
 
     
@@ -49,6 +56,8 @@ public class Raycast : MonoBehaviour
     {
         UpdateIsOnGround();
         focus();
+        UpdateColl();
+        Updatestop();
     }
 
     private void focus()
@@ -66,7 +75,6 @@ public class Raycast : MonoBehaviour
         else{
             EnemyFollow();
             anim.SetBool("faz", true);
-
         }
     }
 
@@ -84,17 +92,41 @@ public class Raycast : MonoBehaviour
             sp.flipX = false;
         }
         oldPosition = transform.position.x;
+        
     }
 
     private void EnemyFollow()
     {
         Vector3 targetposition = new Vector3(tr_p.position.x,gameObject.transform.position.y,tr_p.position.x);
-        transform.position = Vector2.MoveTowards(transform.position, targetposition, 1f*Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, targetposition, FollowSpeed*Time.deltaTime);
+        if (targetposition.x > tr.position.x)
+        {
+            sp.flipX = true;
+        }
+        else if (targetposition.x < tr.position.x)
+        {
+            sp.flipX = false;
+        }
     }
 
     private void UpdateIsOnGround()
     {
         IsOnGround = groundDedectionTrigger.OverlapCollider(groundContactFilter, groundHitDedectionResuts) > 0;
-        Debug.Log("oluyor mu" + IsOnGround);
+    }
+
+    private void UpdateColl()
+    {
+    }
+
+    private void Updatestop()
+    {
+        if (anim.GetBool("faz") == true)
+        {
+            FollowSpeed = 0;
+        }
+        else if (anim.GetBool("faz")== false)
+        {
+            FollowSpeed = 1f;
+        }
     }
 }
