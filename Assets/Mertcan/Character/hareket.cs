@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class charactermove : MonoBehaviour
+public class hareket : MonoBehaviour
 {
     //hareket
-    public float hareketHizi = 20;
+    public float hareketHizi=20;
     public float hareketHiziyukari = 20;
     public float hiz;
 
@@ -35,13 +35,14 @@ public class charactermove : MonoBehaviour
 
         //yön deðiþtirme
         sr = GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
     {
         //hareket
         hiz = hareketHizi * Input.GetAxis("Horizontal");
-        transform.Translate(hiz * Time.deltaTime, 0, 0);
+        transform.Translate(hiz * Time.deltaTime,0,0);
 
 
         //zýplama
@@ -57,11 +58,11 @@ public class charactermove : MonoBehaviour
 
 
         //yön deðiþtirme
-        if (hiz < 0)
+        if (hiz<0)
         {
             sr.flipX = true;
         }
-        else if (hiz > 0)
+        else if(hiz>0)
         {
             sr.flipX = false;
         }
@@ -75,13 +76,13 @@ public class charactermove : MonoBehaviour
             suankicd = cd;
         }
 
-
+        
         if (dashyapýyor)
         {
             hareketHizi = 200;
             suankidashzamani -= Time.deltaTime;
 
-            if (suankidashzamani <= 0)
+            if (suankidashzamani<=0)
             {
                 hareketHizi = 20;
                 dashyapýyor = false;
@@ -91,14 +92,15 @@ public class charactermove : MonoBehaviour
 
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //zýplama
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Zemin"))
         {
             isJump = false;
+            
         }
+
 
     }
 
