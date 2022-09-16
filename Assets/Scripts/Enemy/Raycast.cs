@@ -124,7 +124,7 @@ public class Raycast : MonoBehaviour
         {
             FollowSpeed = 0;
         }
-        else if (anim.GetBool("faz")== false)
+        else if (anim.GetBool("faz") == false)
         {
             FollowSpeed = 1f;
         }

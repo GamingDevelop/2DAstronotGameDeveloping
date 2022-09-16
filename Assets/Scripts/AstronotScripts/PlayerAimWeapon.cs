@@ -10,7 +10,12 @@ public class PlayerAimWeapon : MonoBehaviour
     private Transform aimTransform;
     Vector3 aimDirection;
     Vector3 mousePosition;
-    // Start is called before the first frame update
+
+    private void Start()
+    {
+        
+
+    }
     void Awake()
     {
         aimTransform = transform.Find("Aim");
@@ -40,7 +45,9 @@ public class PlayerAimWeapon : MonoBehaviour
     } 
 
     private void Shoot(){
-            Instantiate(bulletPrefab,firePoint.position , firePoint.rotation);
+        Instantiate(bulletPrefab,firePoint.position , firePoint.rotation);
+        
+
     }
 
 
