@@ -56,8 +56,6 @@ public class Raycast : MonoBehaviour
     {
         UpdateIsOnGround();
         focus();
-        UpdateColl();
-        Updatestop();
     }
 
     private void focus()
@@ -74,7 +72,8 @@ public class Raycast : MonoBehaviour
         }
         else{
             EnemyFollow();
-            anim.SetBool("faz", true);
+            anim.SetBool("IsTriggered", true);
+            anim.SetTrigger("TriggeredGreen");
         }
     }
 
@@ -112,21 +111,5 @@ public class Raycast : MonoBehaviour
     private void UpdateIsOnGround()
     {
         IsOnGround = groundDedectionTrigger.OverlapCollider(groundContactFilter, groundHitDedectionResuts) > 0;
-    }
-
-    private void UpdateColl()
-    {
-    }
-
-    private void Updatestop()
-    {
-        if (anim.GetBool("faz") == true)
-        {
-            FollowSpeed = 0;
-        }
-        else if (anim.GetBool("faz") == false)
-        {
-            FollowSpeed = 1f;
-        }
     }
 }

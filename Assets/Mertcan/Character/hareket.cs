@@ -89,6 +89,7 @@ public class hareket : MonoBehaviour
             }
 
         }
+        RecoilPlayer();
 
     }
 
@@ -102,6 +103,19 @@ public class hareket : MonoBehaviour
         }
 
 
+    }
+
+    private void RecoilPlayer()
+    {
+        if (Input.GetMouseButtonDown(0) && sr.flipX == false)
+        {
+            Debug.Log("a");
+            rigid.AddForce(Vector2.left * 400f);
+        }
+        else if (Input.GetMouseButtonDown(0) && sr.flipX == true)
+        {
+            rigid.AddForce(Vector2.right * 400f);
+        }
     }
 
 }
