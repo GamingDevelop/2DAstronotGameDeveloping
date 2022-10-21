@@ -28,6 +28,7 @@ public class hareket : MonoBehaviour
     public float cd;
     private float suankicd;
 
+  
     private void Start()
     {
         //zýplama
@@ -56,7 +57,7 @@ public class hareket : MonoBehaviour
 
         }
 
-
+        /*
         //yön deðiþtirme
         if (hiz<0)
         {
@@ -66,6 +67,7 @@ public class hareket : MonoBehaviour
         {
             sr.flipX = false;
         }
+        */
 
         //dash
         if (Input.GetKeyDown(KeyCode.Space))
